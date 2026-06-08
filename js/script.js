@@ -2,7 +2,7 @@
 let musicEnabled = false;
 const bgMusic = document.getElementById('bgMusic');
 const musicBtn = document.getElementById('musicBtn');
-const birthdayDate = new Date('2003-06-09').getTime();
+const birthdayDate = new Date('June 9, 2026').getTime();
 
 // ==================== MUSIC TOGGLE ====================
 if (musicBtn) {
