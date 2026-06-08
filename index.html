@@ -5,73 +5,204 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Birthday Wishes - Welcome</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .password-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .password-container h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .password-container p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .password-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .password-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .password-btn:active {
+            transform: scale(0.98);
+        }
+
+        .error-message {
+            color: #e74c3c;
+            margin-top: 10px;
+            display: none;
+            font-size: 14px;
+        }
+
+        .hidden-content {
+            display: none;
+        }
+    </style>
 </head>
 <body class="page-1">
-    <!-- Animated Background Elements -->
-    <div class="balloons-container">
-        <div class="balloon balloon-1"></div>
-        <div class="balloon balloon-2"></div>
-        <div class="balloon balloon-3"></div>
-        <div class="balloon balloon-4"></div>
-        <div class="balloon balloon-5"></div>
+    <!-- Password Protection -->
+    <div id="passwordOverlay" class="password-overlay">
+        <div class="password-container">
+            <h1>🔐 Protected Content</h1>
+            <p>Enter the password to continue</p>
+            <input 
+                type="password" 
+                id="passwordInput" 
+                class="password-input" 
+                placeholder="Enter password"
+                onkeypress="if(event.key==='Enter') checkPassword()"
+            >
+            <button class="password-btn" onclick="checkPassword()">🔓 Unlock</button>
+            <div class="error-message" id="errorMessage">❌ Incorrect password. Try again!</div>
+        </div>
     </div>
 
-    <!-- Music Toggle Button -->
-    <div class="music-toggle">
-        <button id="musicBtn" class="music-btn" title="Toggle Music">
-            <span class="music-icon">🔊</span>
-        </button>
-        <audio id="bgMusic" loop>
-            <source src="assets/music/birthday-music.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-    </div>
-
-    <!-- Main Content -->
-    <div class="container page-1-content">
-        <h1 class="title">🎉 Happy Birthday! 🎉</h1>
-        
-        <!-- Countdown Timer -->
-        <div class="countdown-container">
-            <div class="countdown-label">Time Until Celebration:</div>
-            <div class="countdown">
-                <div class="countdown-item">
-                    <span id="days" class="countdown-value">00</span>
-                    <span class="countdown-label-small">Days</span>
-                </div>
-                <span class="countdown-separator">:</span>
-                <div class="countdown-item">
-                    <span id="hours" class="countdown-value">00</span>
-                    <span class="countdown-label-small">Hours</span>
-                </div>
-                <span class="countdown-separator">:</span>
-                <div class="countdown-item">
-                    <span id="minutes" class="countdown-value">00</span>
-                    <span class="countdown-label-small">Minutes</span>
-                </div>
-                <span class="countdown-separator">:</span>
-                <div class="countdown-item">
-                    <span id="seconds" class="countdown-value">00</span>
-                    <span class="countdown-label-small">Seconds</span>
-                </div>
-            </div>
+    <!-- Main Website Content (Hidden Until Password Correct) -->
+    <div id="mainContent" class="hidden-content">
+        <!-- Animated Background Elements -->
+        <div class="balloons-container">
+            <div class="balloon balloon-1"></div>
+            <div class="balloon balloon-2"></div>
+            <div class="balloon balloon-3"></div>
+            <div class="balloon balloon-4"></div>
+            <div class="balloon balloon-5"></div>
         </div>
 
-        <!-- Unlock Button -->
-        <button id="unlockBtn" class="unlock-btn">
-            <span class="lock-icon">🔒</span>
-            Click to Unlock
-        </button>
+        <!-- Music Toggle Button -->
+        <div class="music-toggle">
+            <button id="musicBtn" class="music-btn" title="Toggle Music">
+                <span class="music-icon">🔊</span>
+            </button>
+            <audio id="bgMusic" loop>
+                <source src="assets/music/birthday-music.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
 
-        <!-- Confetti Animation -->
-        <div id="confetti-container" class="confetti-container"></div>
+        <!-- Main Content -->
+        <div class="container page-1-content">
+            <h1 class="title">🎉 Happy Birthday! 🎉</h1>
+            
+            <!-- Countdown Timer -->
+            <div class="countdown-container">
+                <div class="countdown-label">Time Until Celebration:</div>
+                <div class="countdown">
+                    <div class="countdown-item">
+                        <span id="days" class="countdown-value">00</span>
+                        <span class="countdown-label-small">Days</span>
+                    </div>
+                    <span class="countdown-separator">:</span>
+                    <div class="countdown-item">
+                        <span id="hours" class="countdown-value">00</span>
+                        <span class="countdown-label-small">Hours</span>
+                    </div>
+                    <span class="countdown-separator">:</span>
+                    <div class="countdown-item">
+                        <span id="minutes" class="countdown-value">00</span>
+                        <span class="countdown-label-small">Minutes</span>
+                    </div>
+                    <span class="countdown-separator">:</span>
+                    <div class="countdown-item">
+                        <span id="seconds" class="countdown-value">00</span>
+                        <span class="countdown-label-small">Seconds</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unlock Button -->
+            <button id="unlockBtn" class="unlock-btn">
+                <span class="lock-icon">🔒</span>
+                Click to Unlock
+            </button>
+
+            <!-- Confetti Animation -->
+            <div id="confetti-container" class="confetti-container"></div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="navigation" style="display: none;" id="navigation">
+            <a href="memories.html" class="nav-btn">Next: Memory Lane →</a>
+        </div>
     </div>
 
-    <!-- Navigation -->
-    <div class="navigation" style="display: none;" id="navigation">
-        <a href="memories.html" class="nav-btn">Next: Memory Lane →</a>
-    </div>
-
-    <script src="js/script.js"></script>
+    <script>
+        // Password Protection Script
+        const correctPassword = "SB-2003❤️";
+        
+        function checkPassword() {
+            const inputPassword = document.getElementById('passwordInput').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            if (inputPassword === correctPassword) {
+                // Correct password
+                document.getElementById('passwordOverlay').style.display = 'none';
+                document.getElementById('mainContent').classList.remove('hidden-content');
+                errorMessage.style.display = 'none';
+                document.getElementById('passwordInput').value = '';
+                
+                // Load the main script
+                const script = document.createElement('script');
+                script.src = 'js/script.js';
+                document.body.appendChild(script);
+            } else {
+                // Incorrect password
+                errorMessage.style.display = 'block';
+                document.getElementById('passwordInput').value = '';
+                document.getElementById('passwordInput').focus();
+            }
+        }
+    </script>
 </body>
 </html>
