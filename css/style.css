@@ -352,8 +352,8 @@ body {
 /* Perfect Compact Rectangular Box - 100% Full Visibility */
 .timeline-image {
     width: 100%;
-    max-width: 320px;         /* Keeps the picture container compact and small */
-    height: 180px;            /* Decreased height to make the box smaller on screen */
+    max-width: 480px;         /* Keeps the picture container compact and small */
+    height: 270px;            /* Decreased height to make the box smaller on screen */
     object-fit: contain;      /* Unrolls the picture completely so the person is fully visible */
     background-color: #f3f4f6;/* Adds a clean, light framing backdrop for any padding spaces */
     border-radius: 6px;       /* Sleek curved edges */
