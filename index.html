@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Wishes - Welcome</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-1">
+    <!-- Animated Background Elements -->
+    <div class="balloons-container">
+        <div class="balloon balloon-1"></div>
+        <div class="balloon balloon-2"></div>
+        <div class="balloon balloon-3"></div>
+        <div class="balloon balloon-4"></div>
+        <div class="balloon balloon-5"></div>
+    </div>
+
+    <!-- Music Toggle Button -->
+    <div class="music-toggle">
+        <button id="musicBtn" class="music-btn" title="Toggle Music">
+            <span class="music-icon">🔊</span>
+        </button>
+        <audio id="bgMusic" loop>
+            <source src="assets/music/birthday-music.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container page-1-content">
+        <h1 class="title">🎉 Happy Birthday! 🎉</h1>
+        
+        <!-- Countdown Timer -->
+        <div class="countdown-container">
+            <div class="countdown-label">Time Until Celebration:</div>
+            <div class="countdown">
+                <div class="countdown-item">
+                    <span id="days" class="countdown-value">00</span>
+                    <span class="countdown-label-small">Days</span>
+                </div>
+                <span class="countdown-separator">:</span>
+                <div class="countdown-item">
+                    <span id="hours" class="countdown-value">00</span>
+                    <span class="countdown-label-small">Hours</span>
+                </div>
+                <span class="countdown-separator">:</span>
+                <div class="countdown-item">
+                    <span id="minutes" class="countdown-value">00</span>
+                    <span class="countdown-label-small">Minutes</span>
+                </div>
+                <span class="countdown-separator">:</span>
+                <div class="countdown-item">
+                    <span id="seconds" class="countdown-value">00</span>
+                    <span class="countdown-label-small">Seconds</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unlock Button -->
+        <button id="unlockBtn" class="unlock-btn">
+            <span class="lock-icon">🔒</span>
+            Click to Unlock
+        </button>
+
+        <!-- Confetti Animation -->
+        <div id="confetti-container" class="confetti-container"></div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation" style="display: none;" id="navigation">
+        <a href="memories.html" class="nav-btn">Next: Memory Lane →</a>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
